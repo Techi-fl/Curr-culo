@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Currículo Web</title>
 <style>
+  * {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
   body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -80,9 +86,23 @@
     text-align: center;
     display: none;
   }
-  audio {
-    display: block;
+  #lista-arquivos {
+    margin-top: 10px;
+  }
+  .arquivo-item {
+    background: #eee;
     margin: 5px 0;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .arquivo-item button {
+    background: red;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
   }
 </style>
 </head>
@@ -133,8 +153,10 @@
 </ul>
 
 <h2>Disponibilidade:</h2>
-<p>Total, com preferência manhã ou tarde. Possui computador e celular próprios.</p>
+<p>Total, com preferência manhã ou tarde.</p>
 </div>
+
+
 
 <div class="contato-form">
   <h2>Entre em Contato</h2>
@@ -142,12 +164,9 @@
   <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
   <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)">
   
-  <h3>Gravar Áudio:</h3>
-  <button type="button" id="gravar">🎙️ Gravar</button>
-  <div id="lista-audios"></div>
-
-  <h3>Anexar Arquivos:</h3>
+  <h5>Anexar Arquivos:</h5>
   <input type="file" id="arquivos" multiple>
+  <div id="lista-arquivos"></div>
 
   <br><br>
   <button id="enviar" disabled>Enviar</button>
@@ -168,9 +187,8 @@ document.getElementById('idade').innerText = calcularIdade('2005-04-09') + ' ano
 
 const nomeInput = document.getElementById('nome');
 const btnEnviar = document.getElementById('enviar');
-const gravarBtn = document.getElementById('gravar');
-const listaAudios = document.getElementById('lista-audios');
-let gravador, audioChunks = [];
+const arquivosInput = document.getElementById('arquivos');
+const listaArquivos = document.getElementById('lista-arquivos');
 
 nomeInput.addEventListener('input', () => {
   if (nomeInput.value.trim().length >= 4) {
@@ -182,39 +200,30 @@ nomeInput.addEventListener('input', () => {
   }
 });
 
-gravarBtn.addEventListener('click', () => {
-  if (gravarBtn.dataset.gravando === "true") {
-    gravador.stop();
-    gravarBtn.textContent = "🎙️ Gravar";
-    gravarBtn.dataset.gravando = "false";
-  } else {
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      gravador = new MediaRecorder(stream);
-      gravador.start();
-      audioChunks = [];
-
-      gravador.addEventListener('dataavailable', e => audioChunks.push(e.data));
-      gravador.addEventListener('stop', () => {
-        const blob = new Blob(audioChunks, { type: 'audio/webm' });
-        const url = URL.createObjectURL(blob);
-        const audio = document.createElement('audio');
-        audio.controls = true;
-        audio.src = url;
-        listaAudios.appendChild(audio);
-        audio.dataset.blob = blob;
-      });
-
-      gravarBtn.textContent = "🛑 Parar";
-      gravarBtn.dataset.gravando = "true";
-    });
-  }
+arquivosInput.addEventListener('change', () => {
+  listaArquivos.innerHTML = '';
+  Array.from(arquivosInput.files).forEach((file, index) => {
+    const div = document.createElement('div');
+    div.className = 'arquivo-item';
+    div.innerHTML = `${file.name} <button onclick="removerArquivo(${index})">Remover</button>`;
+    listaArquivos.appendChild(div);
+  });
 });
+
+function removerArquivo(indice) {
+  const dt = new DataTransfer();
+  Array.from(arquivosInput.files).forEach((file, i) => {
+    if (i !== indice) dt.items.add(file);
+  });
+  arquivosInput.files = dt.files;
+  arquivosInput.dispatchEvent(new Event('change'));
+}
 
 btnEnviar.addEventListener('click', () => {
   const nome = document.getElementById('nome').value.trim();
   const msg = document.getElementById('mensagem').value.trim();
   const contato = document.getElementById('contato').value.trim();
-  const arquivos = document.getElementById('arquivos').files;
+  const arquivos = arquivosInput.files;
 
   if (!nome) return;
 
@@ -230,19 +239,6 @@ btnEnviar.addEventListener('click', () => {
       parse_mode: 'Markdown'
     })
   }).then(() => {
-    for (let audio of listaAudios.querySelectorAll('audio')) {
-      const blob = audio.dataset.blob;
-      if (blob) {
-        const formData = new FormData();
-        formData.append('chat_id', '5678358914');
-        formData.append('voice', blob, 'audio.webm');
-        fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendVoice', {
-          method: 'POST',
-          body: formData
-        });
-      }
-    }
-
     for (let file of arquivos) {
       const formData = new FormData();
       formData.append('chat_id', '5678358914');
@@ -261,8 +257,8 @@ btnEnviar.addEventListener('click', () => {
     document.getElementById('nome').value = '';
     document.getElementById('mensagem').value = '';
     document.getElementById('contato').value = '';
-    document.getElementById('arquivos').value = '';
-    listaAudios.innerHTML = '';
+    arquivosInput.value = '';
+    listaArquivos.innerHTML = '';
     btnEnviar.disabled = true;
     btnEnviar.classList.remove('ativo');
   });
