@@ -12,11 +12,9 @@
     background: #f2f2f2;
     color: #333;
   }
-  
-  h1{
-  	margin-top:0;
+  h1 {
+    margin-top: 0;
   }
-  
   h1, h2 {
     background: #000;
     color: #fff;
@@ -82,6 +80,10 @@
     text-align: center;
     display: none;
   }
+  audio {
+    display: block;
+    margin: 5px 0;
+  }
 </style>
 </head>
 <body>
@@ -134,24 +136,20 @@
 <p>Total, com preferência manhã ou tarde. Possui computador e celular próprios.</p>
 </div>
 
-<div class="section" style="max-width:600px; margin:20px auto;">
-  <h2>Localização:</h2>
-  <iframe
-    width="100%"
-    height="300"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://maps.app.goo.gl/8A8iYSk6ntvihCbMA">
-  </iframe>
-</div>
-
 <div class="contato-form">
   <h2>Entre em Contato</h2>
   <input type="text" id="nome" placeholder="Seu nome (mínimo 4 letras)" required>
   <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
   <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)">
+  
+  <h3>Gravar Áudio:</h3>
+  <button type="button" id="gravar">🎙️ Gravar</button>
+  <div id="lista-audios"></div>
+
+  <h3>Anexar Arquivos:</h3>
+  <input type="file" id="arquivos" multiple>
+
+  <br><br>
   <button id="enviar" disabled>Enviar</button>
   <div class="mensagem-enviada" id="msg-status">Mensagem enviada com sucesso!</div>
 </div>
@@ -170,6 +168,9 @@ document.getElementById('idade').innerText = calcularIdade('2005-04-09') + ' ano
 
 const nomeInput = document.getElementById('nome');
 const btnEnviar = document.getElementById('enviar');
+const gravarBtn = document.getElementById('gravar');
+const listaAudios = document.getElementById('lista-audios');
+let gravador, audioChunks = [];
 
 nomeInput.addEventListener('input', () => {
   if (nomeInput.value.trim().length >= 4) {
@@ -181,29 +182,87 @@ nomeInput.addEventListener('input', () => {
   }
 });
 
+gravarBtn.addEventListener('click', () => {
+  if (gravarBtn.dataset.gravando === "true") {
+    gravador.stop();
+    gravarBtn.textContent = "🎙️ Gravar";
+    gravarBtn.dataset.gravando = "false";
+  } else {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      gravador = new MediaRecorder(stream);
+      gravador.start();
+      audioChunks = [];
+
+      gravador.addEventListener('dataavailable', e => audioChunks.push(e.data));
+      gravador.addEventListener('stop', () => {
+        const blob = new Blob(audioChunks, { type: 'audio/webm' });
+        const url = URL.createObjectURL(blob);
+        const audio = document.createElement('audio');
+        audio.controls = true;
+        audio.src = url;
+        listaAudios.appendChild(audio);
+        audio.dataset.blob = blob;
+      });
+
+      gravarBtn.textContent = "🛑 Parar";
+      gravarBtn.dataset.gravando = "true";
+    });
+  }
+});
+
 btnEnviar.addEventListener('click', () => {
   const nome = document.getElementById('nome').value.trim();
   const msg = document.getElementById('mensagem').value.trim();
   const contato = document.getElementById('contato').value.trim();
+  const arquivos = document.getElementById('arquivos').files;
 
   if (!nome) return;
 
-  let texto = `💼 *nome:* _${nome}_\\n============================\\n💬 *mensagem:* _${msg}_`;
-  if (contato) texto += `\\n\\n📱 [*contato:* _${contato}_]`;
+  let texto = `💼 *nome:* _${nome}_\n============================\n💬 *mensagem:* _${msg}_`;
+  if (contato) texto += `\n\n📱 [*contato:* _${contato}_]`;
 
   fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: '5678358914', text: texto, parse_mode: 'Markdown' })
-  })
-  .then(() => {
+    body: JSON.stringify({
+      chat_id: '5678358914',
+      text: texto,
+      parse_mode: 'Markdown'
+    })
+  }).then(() => {
+    for (let audio of listaAudios.querySelectorAll('audio')) {
+      const blob = audio.dataset.blob;
+      if (blob) {
+        const formData = new FormData();
+        formData.append('chat_id', '5678358914');
+        formData.append('voice', blob, 'audio.webm');
+        fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendVoice', {
+          method: 'POST',
+          body: formData
+        });
+      }
+    }
+
+    for (let file of arquivos) {
+      const formData = new FormData();
+      formData.append('chat_id', '5678358914');
+      formData.append('document', file);
+      fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendDocument', {
+        method: 'POST',
+        body: formData
+      });
+    }
+
     document.getElementById('msg-status').style.display = 'block';
     setTimeout(() => {
       document.getElementById('msg-status').style.display = 'none';
     }, 3000);
+
     document.getElementById('nome').value = '';
     document.getElementById('mensagem').value = '';
     document.getElementById('contato').value = '';
+    document.getElementById('arquivos').value = '';
+    listaAudios.innerHTML = '';
     btnEnviar.disabled = true;
     btnEnviar.classList.remove('ativo');
   });
