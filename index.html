@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currículo Web</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f2f2f2;
+    color: #333;
+  }
+  
+  h1{
+  	margin-top:0;
+  }
+  
+  h1, h2 {
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 5%;
+    box-shadow: 2px 2px 5px #888;
+    letter-spacing: 1px;
+  }
+  table {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+  td {
+    padding: 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+  }
+  td:first-child {
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    width: 30%;
+  }
+  .section {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  .contato-form {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  }
+  .contato-form input, .contato-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  .contato-form button {
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  .contato-form button.ativo {
+    opacity: 1;
+  }
+  .mensagem-enviada {
+    color: green;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<h1>Currículo Web</h1>
+
+<table>
+  <tr><td>Nome</td><td>Fabricio Lôbo</td></tr>
+  <tr><td>Idade</td><td id="idade"></td></tr>
+  <tr><td>Contato</td><td>Através da página</td></tr>
+</table>
+
+<div class="section">
+<h2>Objetivo:</h2>
+<p>Atuar na área de Tecnologia, com foco em desenvolvimento, suporte ou áreas administrativas relacionadas.</p>
+
+<h2>Formação:</h2>
+<p>Ensino Médio Completo</p>
+
+<h2>Qualificações e Conhecimentos:</h2>
+<ul>
+<li>Programação e Tecnologias em geral</li>
+<li>Criação de API em Python</li>
+<li>Integração de API com JavaScript</li>
+<li>Desenvolvimento de e-mails customizados com CSS</li>
+<li>Criação de Bots e automações para Telegram</li>
+<li>Conhecimentos administrativos: matrícula, remanejamento, consulta de históricos e boletins</li>
+</ul>
+
+<h2>Experiências:</h2>
+<ul>
+<li>Projetos pessoais de desenvolvimento e automação (APIs, bots, integração de sistemas)</li>
+<li>Apoio administrativo em instituição de ensino (não formal)</li>
+</ul>
+
+<h2>Pontos Fortes:</h2>
+<ul>
+<li>Pontualidade</li>
+<li>Proatividade</li>
+<li>Curiosidade e facilidade de aprendizado</li>
+</ul>
+
+<h2>Pontos a Melhorar:</h2>
+<ul>
+<li>Ansiedade</li>
+<li>Dificuldade ao explicar conteúdos (em processo de desenvolvimento pessoal)</li>
+</ul>
+
+<h2>Disponibilidade:</h2>
+<p>Total, com preferência manhã ou tarde. Possui computador e celular próprios.</p>
+</div>
+
+<div class="section" style="max-width:600px; margin:20px auto;">
+  <h2>Localização:</h2>
+  <iframe
+    width="100%"
+    height="300"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://maps.app.goo.gl/8A8iYSk6ntvihCbMA">
+  </iframe>
+</div>
+
+<div class="contato-form">
+  <h2>Entre em Contato</h2>
+  <input type="text" id="nome" placeholder="Seu nome (mínimo 4 letras)" required>
+  <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
+  <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)">
+  <button id="enviar" disabled>Enviar</button>
+  <div class="mensagem-enviada" id="msg-status">Mensagem enviada com sucesso!</div>
+</div>
+
+<script>
+function calcularIdade(nascStr) {
+  const hoje = new Date();
+  const nasc = new Date(nascStr);
+  let idade = hoje.getFullYear() - nasc.getFullYear();
+  if (hoje.getMonth() < nasc.getMonth() || (hoje.getMonth() === nasc.getMonth() && hoje.getDate() < nasc.getDate())) {
+    idade--;
+  }
+  return idade;
+}
+document.getElementById('idade').innerText = calcularIdade('2005-04-09') + ' anos';
+
+const nomeInput = document.getElementById('nome');
+const btnEnviar = document.getElementById('enviar');
+
+nomeInput.addEventListener('input', () => {
+  if (nomeInput.value.trim().length >= 4) {
+    btnEnviar.disabled = false;
+    btnEnviar.classList.add('ativo');
+  } else {
+    btnEnviar.disabled = true;
+    btnEnviar.classList.remove('ativo');
+  }
+});
+
+btnEnviar.addEventListener('click', () => {
+  const nome = document.getElementById('nome').value.trim();
+  const msg = document.getElementById('mensagem').value.trim();
+  const contato = document.getElementById('contato').value.trim();
+
+  if (!nome) return;
+
+  let texto = `💼 *nome:* _${nome}_\\n============================\\n💬 *mensagem:* _${msg}_`;
+  if (contato) texto += `\\n\\n📱 [*contato:* _${contato}_]`;
+
+  fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: '5678358914', text: texto, parse_mode: 'Markdown' })
+  })
+  .then(() => {
+    document.getElementById('msg-status').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('msg-status').style.display = 'none';
+    }, 3000);
+    document.getElementById('nome').value = '';
+    document.getElementById('mensagem').value = '';
+    document.getElementById('contato').value = '';
+    btnEnviar.disabled = true;
+    btnEnviar.classList.remove('ativo');
+  });
+});
+</script>
+
+</body>
+</html>
