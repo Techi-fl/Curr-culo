@@ -144,6 +144,7 @@
 <li>Pontualidade</li>
 <li>Proatividade</li>
 <li>Curiosidade e facilidade de aprendizado</li>
+<li>Criatividade</li>
 </ul>
 
 <h2>Pontos a Melhorar:</h2>
@@ -160,7 +161,7 @@
 
 <div class="contato-form">
   <h2>Entre em Contato</h2>
-  <input type="text" id="nome" placeholder="Seu nome (mínimo 4 letras)" required>
+  <input type="text" id="nome" placeholder="Nome (mínimo 4 letras)" required>
   <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
   <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)">
   
@@ -227,8 +228,8 @@ btnEnviar.addEventListener('click', () => {
 
   if (!nome) return;
 
-  let texto = `💼 *nome:* _${nome}_\n============================\n💬 *mensagem:* _${msg}_`;
-  if (contato) texto += `\n\n📱 [*contato:* _${contato}_]`;
+  let texto = `💼 *nome:* _${nome}_\n============================\n💬 *mensagem:*\n _${msg}_`;
+  if (contato) texto += `\n\n\n📱 [*contato:* _${contato}_]`;
 
   fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage', {
     method: 'POST',
