@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Currículo Web</title>
 <style>
   * {
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
 
   body {
     font-family: Arial, sans-serif;
@@ -21,7 +21,8 @@
   h1 {
     margin-top: 0;
   }
-  h1, h2 {
+  h1,
+  h2 {
     background: #000;
     color: #fff;
     text-transform: uppercase;
@@ -35,7 +36,7 @@
     max-width: 600px;
     margin: 20px auto;
     border-collapse: collapse;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     background: #fff;
   }
   td {
@@ -54,16 +55,17 @@
     margin: 20px auto;
     background: #fff;
     padding: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   }
   .contato-form {
     max-width: 600px;
     margin: 30px auto;
     background: #fff;
     padding: 20px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   }
-  .contato-form input, .contato-form textarea {
+  .contato-form input,
+  .contato-form textarea {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
@@ -104,166 +106,225 @@
     padding: 4px 8px;
     cursor: pointer;
   }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
 
-<h1>Currículo Web</h1>
+<h1 class="reveal">Currículo Web</h1>
 
-<table>
+<table class="reveal">
   <tr><td>Nome</td><td>Fabricio Lôbo</td></tr>
   <tr><td>Idade</td><td id="idade"></td></tr>
+  <tr><td>Bairro</td><td>Novo Horizonte</td></tr>
   <tr><td>Contato</td><td>Através da página</td></tr>
 </table>
 
-<div class="section">
-<h2>Objetivo:</h2>
-<p>Atuar na área de Tecnologia, com foco em desenvolvimento, suporte ou áreas administrativas relacionadas.</p>
+<div class="section reveal">
+  <h2>Objetivo:</h2>
+  <p>Atuar na área de Tecnologia, com foco em desenvolvimento, suporte ou áreas administrativas relacionadas.</p>
 
-<h2>Formação:</h2>
-<p>Ensino Médio Completo</p>
+  <h2>Formação:</h2>
+  <p>Ensino Médio Completo</p>
 
-<h2>Qualificações e Conhecimentos:</h2>
-<ul>
-<li>Programação e Tecnologias em geral</li>
-<li>Criação de API em Python</li>
-<li>Integração de API com JavaScript</li>
-<li>Desenvolvimento de e-mails customizados com CSS</li>
-<li>Criação de Bots e automações para Telegram</li>
-<li>Conhecimentos administrativos: matrícula, remanejamento, consulta de históricos e boletins</li>
-</ul>
+  <h2>Qualificações e Conhecimentos:</h2>
+  <ul>
+    <li>Programação e Tecnologias em geral</li>
+    <li>Criação de API em Python</li>
+    <li>Integração de API com JavaScript</li>
+    <li>Desenvolvimento de e-mails customizados com CSS</li>
+    <li>Criação de Bots e automações para Telegram</li>
+    <li>Conhecimentos administrativos: matrícula, remanejamento, consulta de históricos e boletins</li>
+  </ul>
 
-<h2>Experiências:</h2>
-<ul>
-<li>Projetos pessoais de desenvolvimento e automação (APIs, bots, integração de sistemas)</li>
-<li>Apoio administrativo em instituição de ensino (não formal)</li>
-</ul>
+  <h2>Experiências:</h2>
+  <ul>
+    <li>Projetos pessoais de desenvolvimento e automação (APIs, bots, integração de sistemas)</li>
+    <li>Apoio administrativo em instituição de ensino (não formal)</li>
+  </ul>
 
-<h2>Pontos Fortes:</h2>
-<ul>
-<li>Pontualidade</li>
-<li>Proatividade</li>
-<li>Curiosidade e facilidade de aprendizado</li>
-<li>Criatividade</li>
-</ul>
+  <h2>Pontos Fortes:</h2>
+  <ul>
+    <li>Pontualidade</li>
+    <li>Proatividade</li>
+    <li>Curiosidade e facilidade de aprendizado</li>
+    <li>Criatividade</li>
+  </ul>
 
-<h2>Pontos a Melhorar:</h2>
-<ul>
-<li>Ansiedade</li>
-<li>Dificuldade ao explicar conteúdos (em processo de desenvolvimento pessoal)</li>
-</ul>
+  <h2>Pontos a Melhorar:</h2>
+  <ul>
+    <li>Ansiedade</li>
+    <li>Dificuldade ao explicar conteúdos (em processo de desenvolvimento pessoal)</li>
+  </ul>
 
-<h2>Disponibilidade:</h2>
-<p>Total, com preferência manhã ou tarde.</p>
+  <h2>Disponibilidade:</h2>
+  <p>Total, com preferência manhã ou tarde.</p>
 </div>
 
-
-
-<div class="contato-form">
+<div class="contato-form reveal">
   <h2>Entre em Contato</h2>
-  <input type="text" id="nome" placeholder="Nome (mínimo 4 letras)" required>
+  <input type="text" id="nome" placeholder="Nome (mínimo 4 letras)" required />
   <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
-  <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)">
+  <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)" />
   
   <h5>Anexar Arquivos:</h5>
-  <input type="file" id="arquivos" multiple>
+  <input type="file" id="arquivos" multiple />
   <div id="lista-arquivos"></div>
 
-  <br><br>
+  <br /><br />
   <button id="enviar" disabled>Enviar</button>
   <div class="mensagem-enviada" id="msg-status">Mensagem enviada com sucesso!</div>
 </div>
 
 <script>
-function calcularIdade(nascStr) {
-  const hoje = new Date();
-  const nasc = new Date(nascStr);
-  let idade = hoje.getFullYear() - nasc.getFullYear();
-  if (hoje.getMonth() < nasc.getMonth() || (hoje.getMonth() === nasc.getMonth() && hoje.getDate() < nasc.getDate())) {
-    idade--;
-  }
-  return idade;
-}
-document.getElementById('idade').innerText = calcularIdade('2005-04-09') + ' anos';
-
-const nomeInput = document.getElementById('nome');
-const btnEnviar = document.getElementById('enviar');
-const arquivosInput = document.getElementById('arquivos');
-const listaArquivos = document.getElementById('lista-arquivos');
-
-nomeInput.addEventListener('input', () => {
-  if (nomeInput.value.trim().length >= 4) {
-    btnEnviar.disabled = false;
-    btnEnviar.classList.add('ativo');
-  } else {
-    btnEnviar.disabled = true;
-    btnEnviar.classList.remove('ativo');
-  }
-});
-
-arquivosInput.addEventListener('change', () => {
-  listaArquivos.innerHTML = '';
-  Array.from(arquivosInput.files).forEach((file, index) => {
-    const div = document.createElement('div');
-    div.className = 'arquivo-item';
-    div.innerHTML = `${file.name} <button onclick="removerArquivo(${index})">Remover</button>`;
-    listaArquivos.appendChild(div);
-  });
-});
-
-function removerArquivo(indice) {
-  const dt = new DataTransfer();
-  Array.from(arquivosInput.files).forEach((file, i) => {
-    if (i !== indice) dt.items.add(file);
-  });
-  arquivosInput.files = dt.files;
-  arquivosInput.dispatchEvent(new Event('change'));
-}
-
-btnEnviar.addEventListener('click', () => {
-  const nome = document.getElementById('nome').value.trim();
-  const msg = document.getElementById('mensagem').value.trim();
-  const contato = document.getElementById('contato').value.trim();
-  const arquivos = arquivosInput.files;
-
-  if (!nome) return;
-
-  let texto = `💼 *nome:* _${nome}_\n============================\n💬 *mensagem:*\n _${msg}_`;
-  if (contato) texto += `\n\n\n📱 [*contato:* _${contato}_]`;
-
-  fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: '5678358914',
-      text: texto,
-      parse_mode: 'Markdown'
-    })
-  }).then(() => {
-    for (let file of arquivos) {
-      const formData = new FormData();
-      formData.append('chat_id', '5678358914');
-      formData.append('document', file);
-      fetch('https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendDocument', {
-        method: 'POST',
-        body: formData
-      });
+  function calcularIdade(nascStr) {
+    const hoje = new Date();
+    const nasc = new Date(nascStr);
+    let idade = hoje.getFullYear() - nasc.getFullYear();
+    if (
+      hoje.getMonth() < nasc.getMonth() ||
+      (hoje.getMonth() === nasc.getMonth() && hoje.getDate() < nasc.getDate())
+    ) {
+      idade--;
     }
+    return idade;
+  }
+  document.getElementById('idade').innerText = calcularIdade('2005-04-09') + ' anos';
 
-    document.getElementById('msg-status').style.display = 'block';
-    setTimeout(() => {
-      document.getElementById('msg-status').style.display = 'none';
-    }, 3000);
+  const nomeInput = document.getElementById('nome');
+  const btnEnviar = document.getElementById('enviar');
+  const arquivosInput = document.getElementById('arquivos');
+  const listaArquivos = document.getElementById('lista-arquivos');
 
-    document.getElementById('nome').value = '';
-    document.getElementById('mensagem').value = '';
-    document.getElementById('contato').value = '';
-    arquivosInput.value = '';
-    listaArquivos.innerHTML = '';
-    btnEnviar.disabled = true;
-    btnEnviar.classList.remove('ativo');
+  nomeInput.addEventListener('input', () => {
+    if (nomeInput.value.trim().length >= 4) {
+      btnEnviar.disabled = false;
+      btnEnviar.classList.add('ativo');
+    } else {
+      btnEnviar.disabled = true;
+      btnEnviar.classList.remove('ativo');
+    }
   });
-});
+
+  arquivosInput.addEventListener('change', () => {
+    listaArquivos.innerHTML = '';
+    Array.from(arquivosInput.files).forEach((file, index) => {
+      const div = document.createElement('div');
+      div.className = 'arquivo-item';
+      div.innerHTML = `${file.name} <button onclick="removerArquivo(${index})">Remover</button>`;
+      listaArquivos.appendChild(div);
+    });
+  });
+
+  function removerArquivo(indice) {
+    const dt = new DataTransfer();
+    Array.from(arquivosInput.files).forEach((file, i) => {
+      if (i !== indice) dt.items.add(file);
+    });
+    arquivosInput.files = dt.files;
+    arquivosInput.dispatchEvent(new Event('change'));
+  }
+
+  btnEnviar.addEventListener('click', () => {
+    const nome = document.getElementById('nome').value.trim();
+    const msg = document.getElementById('mensagem').value.trim();
+    const contato = document.getElementById('contato').value.trim();
+    const arquivos = arquivosInput.files;
+
+    if (!nome) return;
+
+    let texto = ` *nome:* _${nome}_\n============================\n *mensagem:*\n _${msg}_`;
+    if (contato) texto += `\n\n\n [*contato:* _${contato}_]`;
+
+    fetch(
+      'https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: '5678358914',
+          text: texto,
+          parse_mode: 'Markdown'
+        })
+      }
+    ).then(() => {
+      for (let file of arquivos) {
+        const formData = new FormData();
+        formData.append('chat_id', '5678358914');
+        formData.append('document', file);
+        fetch(
+          'https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendDocument',
+          {
+            method: 'POST',
+            body: formData
+          }
+        );
+      }
+
+      document.getElementById('msg-status').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('msg-status').style.display = 'none';
+      }, 3000);
+
+      document.getElementById('nome').value = '';
+      document.getElementById('mensagem').value = '';
+      document.getElementById('contato').value = '';
+      arquivosInput.value = '';
+      listaArquivos.innerHTML = '';
+      btnEnviar.disabled = true;
+      btnEnviar.classList.remove('ativo');
+    });
+  });
+
+  // Envia mensagem automática ao acessar o site
+  window.addEventListener('DOMContentLoaded', () => {
+    fetch(
+      'https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: '5678358914',
+          text: ' Alguém acabou de acessar o Currículo Web!',
+          parse_mode: 'Markdown'
+        })
+      }
+    )
+      .then(() => {
+        console.log('Notificação de acesso enviada com sucesso!');
+      })
+      .catch((err) => {
+        console.error('Erro ao enviar notificação:', err);
+      });
+  });
+
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  reveals.forEach((el) => observer.observe(el));
 </script>
 
 </body>
