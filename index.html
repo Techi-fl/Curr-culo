@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +9,6 @@
     max-width: 100%;
     overflow-wrap: break-word;
   }
-
   body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -18,11 +16,7 @@
     background: #f2f2f2;
     color: #333;
   }
-  h1 {
-    margin-top: 0;
-  }
-  h1,
-  h2 {
+  h1, h2 {
     background: #000;
     color: #fff;
     text-transform: uppercase;
@@ -31,12 +25,13 @@
     box-shadow: 2px 2px 5px #888;
     letter-spacing: 1px;
   }
+  h1 { margin-top: 0; }
   table {
     width: 100%;
     max-width: 600px;
     margin: 20px auto;
     border-collapse: collapse;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
     background: #fff;
   }
   td {
@@ -50,26 +45,17 @@
     font-weight: bold;
     width: 30%;
   }
-  .section {
+  .section, .contato-form {
     max-width: 600px;
     margin: 20px auto;
     background: #fff;
     padding: 15px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
   }
-  .contato-form {
-    max-width: 600px;
-    margin: 30px auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  }
-  .contato-form input,
-  .contato-form textarea {
+  .contato-form input, .contato-form textarea {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
-    box-sizing: border-box;
   }
   .contato-form button {
     padding: 10px 20px;
@@ -106,226 +92,167 @@
     padding: 4px 8px;
     cursor: pointer;
   }
-
   .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.6s, transform 0.6s;
   }
   .reveal.active {
     opacity: 1;
     transform: translateY(0);
   }
+  #btnExtras {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  #painelExtras {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+    padding: 15px;
+    overflow-y: auto;
+    transition: right 0.3s;
+    z-index: 9999;
+  }
+  #painelExtras.ativo {
+    right: 0;
+  }
+  #btnFecharExtras {
+    background: black;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
 </style>
 </head>
 <body>
-
 <h1 class="reveal">Currículo Web</h1>
-
 <table class="reveal">
-  <tr><td>Nome</td><td>Fabricio Lôbo</td></tr>
-  <tr><td>Idade</td><td id="idade"></td></tr>
-  <tr><td>Bairro</td><td>Novo Horizonte</td></tr>
-  <tr><td>Contato</td><td>Através da página</td></tr>
+<tr><td>Nome</td><td>Fabricio Lôbo</td></tr>
+<tr><td>Idade</td><td id="idade"></td></tr>
+<tr><td>Endereço</td><td>Novo Horizonte</td></tr>
+<tr><td>Contato</td><td>Através da página</td></tr>
 </table>
-
 <div class="section reveal">
-  <h2>Objetivo:</h2>
-  <p>Atuar na área de Tecnologia, com foco em desenvolvimento, suporte ou áreas administrativas relacionadas.</p>
-
-  <h2>Formação:</h2>
-  <p>Ensino Médio Completo</p>
-
-  <h2>Qualificações e Conhecimentos:</h2>
-  <ul>
-    <li>Programação e Tecnologias em geral</li>
-    <li>Criação de API em Python</li>
-    <li>Integração de API com JavaScript</li>
-    <li>Desenvolvimento de e-mails customizados com CSS</li>
-    <li>Criação de Bots e automações para Telegram</li>
-    <li>Conhecimentos administrativos: matrícula, remanejamento, consulta de históricos e boletins</li>
-  </ul>
-
-  <h2>Experiências:</h2>
-  <ul>
-    <li>Projetos pessoais de desenvolvimento e automação (APIs, bots, integração de sistemas)</li>
-    <li>Apoio administrativo em instituição de ensino (não formal)</li>
-  </ul>
-
-  <h2>Pontos Fortes:</h2>
-  <ul>
-    <li>Pontualidade</li>
-    <li>Proatividade</li>
-    <li>Curiosidade e facilidade de aprendizado</li>
-    <li>Criatividade</li>
-  </ul>
-
-  <h2>Pontos a Melhorar:</h2>
-  <ul>
-    <li>Ansiedade</li>
-    <li>Dificuldade ao explicar conteúdos (em processo de desenvolvimento pessoal)</li>
-  </ul>
-
-  <h2>Disponibilidade:</h2>
-  <p>Total, com preferência manhã ou tarde.</p>
+<h2>Objetivo:</h2>
+<p>Atuar na área de Tecnologia, com foco em desenvolvimento, suporte ou áreas administrativas relacionadas.</p>
+<h2>Formação:</h2>
+<p>Ensino Médio Completo</p>
+<h2>Qualificações e Conhecimentos:</h2>
+<ul>
+<li>Programação e Tecnologias em geral</li>
+<li>Criação de API em Python</li>
+<li>Integração de API com JavaScript</li>
+<li>Desenvolvimento de e-mails customizados com CSS</li>
+<li>Criação de Bots e automações para Telegram</li>
+<li>Conhecimentos administrativos: matrícula, remanejamento, consulta de históricos e boletins</li>
+</ul>
+<h2>Experiências:</h2>
+<ul>
+<li>Projetos pessoais de desenvolvimento e automação (APIs, bots, integração de sistemas, E-mails customizados com css)</li>
+<li>Apoio administrativo em instituição de ensino (não formal)</li>
+</ul>
+<h2>Pontos Fortes:</h2>
+<ul>
+<li>Pontualidade</li>
+<li>Proatividade</li>
+<li>Curiosidade e facilidade de aprendizado</li>
+<li>Creatividade</li>
+</ul>
+<h2>Pontos a Melhorar:</h2>
+<ul>
+<li>Ansiedade</li>
+<li>Dificuldade ao explicar conteúdos (em processo de desenvolvimento pessoal)</li>
+</ul>
+<h2>Disponibilidade:</h2>
+<p>Total, com preferência manhã ou tarde.</p>
 </div>
-
 <div class="contato-form reveal">
-  <h2>Entre em Contato</h2>
-  <input type="text" id="nome" placeholder="Nome (mínimo 4 letras)" required />
-  <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
-  <input type="text" id="contato" placeholder="Contato opcional (rede social, etc)" />
-  
-  <h5>Anexar Arquivos:</h5>
-  <input type="file" id="arquivos" multiple />
-  <div id="lista-arquivos"></div>
-
-  <br /><br />
-  <button id="enviar" disabled>Enviar</button>
-  <div class="mensagem-enviada" id="msg-status">Mensagem enviada com sucesso!</div>
+<h2>Entre em Contato</h2>
+<input type="text" id="nome" placeholder="Nome (mínimo 4 letras)" required />
+<textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
+<input type="text" id="contato" placeholder="Contato (opcional, caso queira resposta)">
+<small style="display:block;margin-bottom:10px;color:#555;">Preencha apenas se quiser que eu entre em contato (rede social, telefone, etc).</small>
+<h5>Anexar Arquivos (opcional - pode ser áudio, vídeo ou documento):</h5>
+<input type="file" id="arquivos" multiple />
+<div id="lista-arquivos"></div>
+<br /><br />
+<button id="enviar" disabled>Enviar</button>
+<div class="mensagem-enviada" id="msg-status">Mensagem enviada com sucesso!</div>
 </div>
+<button id="btnExtras">Partes Extras </button>
+<div id="painelExtras">
+<h2>Resumo</h2>
+<p>Essa página foi criada para facilitar o envio e visualização do meu currículo, usando tecnologias práticas como HTML, CSS e JavaScript, sem necessidade de baixar arquivos ou abrir anexos. Além disso, o sistema conta com recursos interativos e envio automático de informações pelo Telegram para agilizar o contato.</p>
+<h2>Contato</h2>
+<p>O campo de contato foi pensado pra facilitar, caso você queira resposta. É opcional e existe justamente por questões de segurança: só preenche se quiser, assim meus dados e os seus ficam protegidos.
+Se quiser também dá para anexar arquivos, tipo áudio, vídeo ou documento — mas só se for necessário.</p>
+<h2>🧩 Sobre Mim</h2>
+<ul style="list-style: '✅ '; padding-left: 20px; line-height: 1.6;">
+  <li>Sou curioso em relação à tecnologia e aprendo as coisas com facilidade.</li>
+  <li>Mesmo fora da área de tecnologia, estou sempre aberto a coisas novas, sem deixar de lado o que mais gosto de fazer.</li>
+  <li>Busco sempre evoluir e absorver um pouco de cada experiência ou conhecimento.</li>
+</ul>
 
+
+<button id="btnFecharExtras">Fechar Extras</button>
+<div id="data-especial"></div>
+</div>
 <script>
-  function calcularIdade(nascStr) {
-    const hoje = new Date();
-    const nasc = new Date(nascStr);
-    let idade = hoje.getFullYear() - nasc.getFullYear();
-    if (
-      hoje.getMonth() < nasc.getMonth() ||
-      (hoje.getMonth() === nasc.getMonth() && hoje.getDate() < nasc.getDate())
-    ) {
-      idade--;
-    }
-    return idade;
-  }
-  document.getElementById('idade').innerText = calcularIdade('2005-04-09') + ' anos';
+function calcularIdade(nascStr){const h=new Date(),n=new Date(nascStr);let i=h.getFullYear()-n.getFullYear();return(h.getMonth()<n.getMonth()||(h.getMonth()===n.getMonth()&&h.getDate()<n.getDate()))&&i--,i}
+document.getElementById("idade").innerText=calcularIdade("2005-04-09")+" anos";
+const nomeInput=document.getElementById("nome"),btnEnviar=document.getElementById("enviar"),arquivosInput=document.getElementById("arquivos"),listaArquivos=document.getElementById("lista-arquivos");
+nomeInput.addEventListener("input",()=>{nomeInput.value.trim().length>=4?(btnEnviar.disabled=!1,btnEnviar.classList.add("ativo")):(btnEnviar.disabled=!0,btnEnviar.classList.remove("ativo"))});
+arquivosInput.addEventListener("change",()=>{listaArquivos.innerHTML="",Array.from(arquivosInput.files).forEach((e,t)=>{const a=document.createElement("div");a.className="arquivo-item",a.innerHTML=`${e.name} <button onclick="removerArquivo(${t})">Remover</button>`,listaArquivos.appendChild(a)})});
+function removerArquivo(e){const t=new DataTransfer;Array.from(arquivosInput.files).forEach((a,n)=>{e!==n&&t.items.add(a)}),arquivosInput.files=t.files,arquivosInput.dispatchEvent(new Event("change"))}
+btnEnviar.addEventListener("click",()=>{const e=document.getElementById("nome").value.trim(),t=document.getElementById("mensagem").value.trim(),a=document.getElementById("contato").value.trim(),n=arquivosInput.files;if(!e)return;let s=`*nome:* _${e}_\n============================\n*mensagem:*\n_${t}_`;a&&(s+=`\n\n*contato:* _${a}_`),fetch("https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:"5678358914",text:s,parse_mode:"Markdown"})}).then(()=>{for(let e of n){const t=new FormData;t.append("chat_id","5678358914"),t.append("document",e),fetch("https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendDocument",{method:"POST",body:t})}document.getElementById("msg-status").style.display="block",setTimeout(()=>{document.getElementById("msg-status").style.display="none"},3e3),document.getElementById("nome").value="",document.getElementById("mensagem").value="",document.getElementById("contato").value="",arquivosInput.value="",listaArquivos.innerHTML="",btnEnviar.disabled=!0,btnEnviar.classList.remove("ativo")})});
+window.addEventListener("DOMContentLoaded",()=>{const e=navigator.userAgent,t=navigator.language||navigator.userLanguage,a=window.screen.width,n=window.screen.height,o=`\ud83d\udc40 *Novo acesso ao Curr\u00edculo Web!*\n\n\ud83c\udf10 *Navegador:* _${e}_\n\ud83d\udcbb *Sistema:* _${navigator.platform}_\n\ud83d\udd0a *Idioma:* _${t}_\n\ud83d\udda5\ufe0f *Resolu\u00e7\u00e3o:* _${a}x${n}_\n============================`;fetch("https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:"5678358914",text:o,parse_mode:"Markdown"})}).then(()=>{console.log("Notifica\u00e7\u00e3o com dados enviada!")}).catch(e=>{console.error("Erro:",e)})});
+const reveals=document.querySelectorAll(".reveal"),observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(e.target.classList.add("active"),observer.unobserve(e.target))})},{threshold:.1});reveals.forEach(e=>observer.observe(e));
+const btnExtras=document.getElementById("btnExtras"),painel=document.getElementById("painelExtras"),btnFechar=document.getElementById("btnFecharExtras");
+btnExtras.addEventListener("click",()=>{painel.classList.add("ativo")});
+btnFechar.addEventListener("click",()=>{painel.classList.remove("ativo")});
 
-  const nomeInput = document.getElementById('nome');
-  const btnEnviar = document.getElementById('enviar');
-  const arquivosInput = document.getElementById('arquivos');
-  const listaArquivos = document.getElementById('lista-arquivos');
+function gerarDataAniversario(idDiv) {
+  const hoje = new Date();
+  const dia = String(hoje.getDate()).padStart(2, '0');
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+  
+  const container = document.getElementById(idDiv);
+  if (!container) return;
 
-  nomeInput.addEventListener('input', () => {
-    if (nomeInput.value.trim().length >= 4) {
-      btnEnviar.disabled = false;
-      btnEnviar.classList.add('ativo');
-    } else {
-      btnEnviar.disabled = true;
-      btnEnviar.classList.remove('ativo');
-    }
-  });
+  const bloco = document.createElement('div');
+  bloco.style.padding = '10px';
+  bloco.style.textAlign = 'center';
+  bloco.style.fontSize = '18px';
+  bloco.style.margin = '10px auto';
+  bloco.style.fontWeight = 'bold';
 
-  arquivosInput.addEventListener('change', () => {
-    listaArquivos.innerHTML = '';
-    Array.from(arquivosInput.files).forEach((file, index) => {
-      const div = document.createElement('div');
-      div.className = 'arquivo-item';
-      div.innerHTML = `${file.name} <button onclick="removerArquivo(${index})">Remover</button>`;
-      listaArquivos.appendChild(div);
-    });
-  });
-
-  function removerArquivo(indice) {
-    const dt = new DataTransfer();
-    Array.from(arquivosInput.files).forEach((file, i) => {
-      if (i !== indice) dt.items.add(file);
-    });
-    arquivosInput.files = dt.files;
-    arquivosInput.dispatchEvent(new Event('change'));
+  if (dia === '09' && mes === '04') {
+    bloco.style.color = 'red';
+    bloco.innerHTML = ` <b>Happy Birthday</b> <br>${dia}/${mes}`;
+  } else {
+    bloco.style.color = '#333';
+    bloco.innerText = `${dia}/${mes}`;
   }
 
-  btnEnviar.addEventListener('click', () => {
-    const nome = document.getElementById('nome').value.trim();
-    const msg = document.getElementById('mensagem').value.trim();
-    const contato = document.getElementById('contato').value.trim();
-    const arquivos = arquivosInput.files;
-
-    if (!nome) return;
-
-    let texto = ` *nome:* _${nome}_\n============================\n *mensagem:*\n _${msg}_`;
-    if (contato) texto += `\n\n\n [*contato:* _${contato}_]`;
-
-    fetch(
-      'https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: '5678358914',
-          text: texto,
-          parse_mode: 'Markdown'
-        })
-      }
-    ).then(() => {
-      for (let file of arquivos) {
-        const formData = new FormData();
-        formData.append('chat_id', '5678358914');
-        formData.append('document', file);
-        fetch(
-          'https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendDocument',
-          {
-            method: 'POST',
-            body: formData
-          }
-        );
-      }
-
-      document.getElementById('msg-status').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('msg-status').style.display = 'none';
-      }, 3000);
-
-      document.getElementById('nome').value = '';
-      document.getElementById('mensagem').value = '';
-      document.getElementById('contato').value = '';
-      arquivosInput.value = '';
-      listaArquivos.innerHTML = '';
-      btnEnviar.disabled = true;
-      btnEnviar.classList.remove('ativo');
-    });
-  });
-
-  // Envia mensagem automática ao acessar o site
-  window.addEventListener('DOMContentLoaded', () => {
-    fetch(
-      'https://api.telegram.org/bot8043835789:AAHcixpA8GKKS_8KbFwcxmY09aDGqLovIUE/sendMessage',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: '5678358914',
-          text: ' Alguém acabou de acessar o Currículo Web!',
-          parse_mode: 'Markdown'
-        })
-      }
-    )
-      .then(() => {
-        console.log('Notificação de acesso enviada com sucesso!');
-      })
-      .catch((err) => {
-        console.error('Erro ao enviar notificação:', err);
-      });
-  });
-
-  // Scroll Reveal
-  const reveals = document.querySelectorAll('.reveal');
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-    }
-  );
-
-  reveals.forEach((el) => observer.observe(el));
+  container.appendChild(bloco);
+}
+gerarDataAniversario('data-especial');
 </script>
-
 </body>
 </html>
